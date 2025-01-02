@@ -7,18 +7,14 @@ import javax.inject.Inject
 class CarRepository @Inject constructor(
     private val carApiService: CarApiService
 ) {
-    suspend fun getCars(): List<Car> {
-        val response = carApiService.getCarsMakes()
-
+     suspend fun getCars(): List<Car> {
+        val response = carApiService.getCars()
         if (response.isSuccessful) {
-            // Safely handle the response body
-            print("debug response *************************************")
-            print(response.body())
-            return    getCarsTest() // Return the cars list, or empty if null
-        } else {
-            // If the request fails, throw an exception with the error message
-            throw Exception("Failed to load cars: ${response.message()}")
+            response.body()?.let {
+                return it.Models
+            }
         }
+        throw Exception("Failed to load cars: ${response.message()}")
     }
 
 

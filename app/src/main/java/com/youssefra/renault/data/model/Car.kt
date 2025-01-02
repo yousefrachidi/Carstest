@@ -1,7 +1,7 @@
 package com.youssefra.renault.data.model
 
 data class CarResponse(
-    val cars: List<Car> // List of car objects
+    val Models: List<Car> // List of car objects
 )
 data class Car(
     var model_name:String= "null" ,
